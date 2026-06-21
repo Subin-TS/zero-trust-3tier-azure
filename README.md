@@ -28,7 +28,8 @@ The application was designed to meet the following requirements:
 
 ## Solution Architecture
 
-The application follows a traditional 3-tier architecture pattern:
+The application follows a traditional 3-tier architecture pattern:  
+Architecture_diagram.png
 
 ```text
 Internet
