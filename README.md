@@ -52,25 +52,16 @@ Database VM
 (MySQL Server)
 Database Subnet
 10.0.3.0/24
-
-
-### Administrative Access
-
-
+Administrative Access
 Azure Bastion
     ├── Frontend VM
     ├── Backend VM
     └── Database VM
-
-
-### Outbound Connectivity
-
-
+Outbound Connectivity
 Azure NAT Gateway
     ├── Frontend VM
     ├── Backend VM
     └── Database VM
-
 
 ## Azure Resources Deployed
 
