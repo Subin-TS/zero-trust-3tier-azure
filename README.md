@@ -10,6 +10,7 @@ To strengthen the security posture, Azure Bastion was implemented for administra
 
 The solution simulates a real-world e-commerce platform where users can browse products, view pricing and images, and retrieve product information through a backend REST API connected to a MySQL database.
 
+---
 
 ## Business Requirements
 
@@ -23,11 +24,13 @@ The application was designed to meet the following requirements:
 * Provide controlled outbound internet connectivity for software updates and package installation.
 * Demonstrate Azure networking, Linux administration, and application deployment skills.
 
+---
 
 ## Solution Architecture
 
 The application follows a traditional 3-tier architecture pattern:
 
+```text
 Internet
     │
     ▼
@@ -52,16 +55,27 @@ Database VM
 (MySQL Server)
 Database Subnet
 10.0.3.0/24
-Administrative Access
+```
+
+### Administrative Access
+
+```text
 Azure Bastion
     ├── Frontend VM
     ├── Backend VM
     └── Database VM
-Outbound Connectivity
+```
+
+### Outbound Connectivity
+
+```text
 Azure NAT Gateway
     ├── Frontend VM
     ├── Backend VM
     └── Database VM
+```
+
+---
 
 ## Azure Resources Deployed
 
@@ -78,7 +92,7 @@ Azure NAT Gateway
 | Ubuntu Virtual Machines | Application hosting                     |
 | Public IP Address       | Frontend application access             |
 
-
+---
 
 ## Technology Stack
 
@@ -121,7 +135,7 @@ Responsibilities:
 * Maintains application data
 * Supports backend queries
 
-
+---
 
 ## Network Security Design
 
@@ -152,6 +166,8 @@ As a result:
 * Backend services remain private.
 * Database services remain completely isolated from internet traffic.
 
+---
+
 ## Bastion-Based Administration
 
 Rather than exposing SSH (Port 22) to the internet, Azure Bastion was deployed to provide secure browser-based access to all virtual machines.
@@ -162,6 +178,8 @@ Benefits:
 * Reduces attack surface
 * Centralizes administration
 * Improves security compliance
+
+---
 
 ## NAT Gateway Implementation
 
@@ -174,7 +192,7 @@ All virtual machines require outbound internet access for:
 
 Azure NAT Gateway was attached to the application subnets to provide secure outbound connectivity while preventing unsolicited inbound connections.
 
-
+---
 
 ## Application Workflow
 
@@ -187,6 +205,7 @@ The following sequence occurs when a user accesses the application:
 5. Product information is returned as JSON.
 6. The frontend dynamically renders product details, pricing, and images.
 
+```text
 Client Browser
       │
       ▼
@@ -197,18 +216,38 @@ Flask REST API
       │
       ▼
 MySQL Database
+```
 
+---
 
 ## Validation and Testing
 
 ### Frontend to Backend Connectivity
 
+```bash
 curl http://<backend-private-ip>:5000/products
+```
 
 ### Backend to Database Connectivity
 
+```bash
 mysql -h <database-private-ip> -u ecomuser -p
+```
 
+### Database Validation
+
+```sql
+SELECT * FROM products;
+```
+
+Successful validation confirmed:
+
+* Frontend-to-backend communication
+* Backend-to-database communication
+* Product retrieval from MySQL
+* End-user access to the storefront
+
+---
 
 ## Key Skills Demonstrated
 
@@ -243,6 +282,7 @@ mysql -h <database-private-ip> -u ecomuser -p
 * Private Application Infrastructure
 * Defense-in-Depth Security
 
+---
 
 ## Project Outcome
 
